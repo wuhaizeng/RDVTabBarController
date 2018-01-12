@@ -79,10 +79,21 @@
         
         if (!itemHeight) {
             itemHeight = frameSize.height;
+            if (@available(iOS 11.0, *)) {
+                if ([UIScreen mainScreen].bounds.size.height==812) {
+                    itemHeight -= 34;
+                }
+            }
+        }
+        CGFloat itmeY = roundf(frameSize.height - itemHeight) - self.contentEdgeInsets.top;
+        if (@available(iOS 11.0, *)) {
+            if ([UIScreen mainScreen].bounds.size.height==812) {
+                itmeY -= 34;
+            }
         }
         
         [item setFrame:CGRectMake(self.contentEdgeInsets.left + (index * self.itemWidth),
-                                  roundf(frameSize.height - itemHeight) - self.contentEdgeInsets.top,
+                                  itmeY,
                                   self.itemWidth, itemHeight - self.contentEdgeInsets.bottom)];
         [item setNeedsDisplay];
         
