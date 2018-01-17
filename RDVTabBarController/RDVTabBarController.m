@@ -208,9 +208,9 @@
         if (!weakSelf.tabBarHidden) {
             tabBarStartingY = viewSize.height - tabBarHeight;
             if (@available(iOS 11.0, *)) {
-                if (tabBarHeight <= 49 && [UIScreen mainScreen].bounds.size.height==812) {
-                    tabBarStartingY -= 34;
-                    tabBarHeight += 34;
+                if (tabBarHeight <= 49) {
+                    tabBarStartingY -= self.view.safeAreaInsets.bottom;
+                    tabBarHeight += self.view.safeAreaInsets.bottom;
                 }
             }
             if (![[weakSelf tabBar] isTranslucent]) {
